@@ -1,5 +1,9 @@
 <script setup lang="ts">
-    const { data: stripeData } = await useFetch('/api/stripe');
+    const { data: stripeData, error } = await useFetch('/api/stripe');
+
+    if(error){
+        console.log("error occured");
+    }
 </script>
 
 <template>
@@ -14,8 +18,8 @@
                     </div>
                 </div>
             </div>
-            <div v-else>
-                <p class="text-center text-red-500 text-5xl">{{ stripeData?.data[0] }}</p>
+            <div v-if="error">
+                <p class="text-center text-red-500 text-5xl">Some error happened!</p>
             </div>
         </div>
     </section>

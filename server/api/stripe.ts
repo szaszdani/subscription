@@ -9,10 +9,10 @@ export default defineEventHandler(async () => {
     }
   }
   catch(err){
-    return {
-      ok: false,
-      data: ["Something went wrong with the API!"]
-    }
+    throw createError({
+      statusCode: 500,
+      message: "Some error message"
+    });
   }
   
 });
