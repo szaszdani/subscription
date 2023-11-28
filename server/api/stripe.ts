@@ -1,12 +1,20 @@
 import Stripe from 'stripe';
 
 export default defineEventHandler(async () => {
-  
-  let returnObj = await getData();
-  
-  return {
-    data: returnObj
+  try{
+    let returnObj = await getData();
+    return {
+      ok: true,
+      data: returnObj
+    }
   }
+  catch(err){
+    return {
+      ok: false,
+      data: ["Something went wrong with the API!"]
+    }
+  }
+  
 });
 
 async function getData(){
